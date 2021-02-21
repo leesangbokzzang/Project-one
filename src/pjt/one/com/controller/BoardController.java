@@ -26,9 +26,12 @@ public class BoardController extends HttpServlet {
 	private void requestFunc(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String cmd = request.getParameter("cmd");
+		
 		if(cmd.equals("FISRTLIST")) {
 			BoardDao dao= new BoardDao();
 			List<BoardListVo> list = dao.getBoardList();
+			
+			request.setAttribute("boardlist", list);
 			
 			String link = "/view/list.jsp";
 			request.getRequestDispatcher(link).forward(request, response);

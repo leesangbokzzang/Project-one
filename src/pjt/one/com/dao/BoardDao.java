@@ -29,8 +29,8 @@ public class BoardDao {
 				BoardListVo vo = new BoardListVo();
 				vo.setIDX(rs.getString("IDX"));
 				vo.setTITLE(rs.getString("TITLE"));
-				vo.setREADCOUNT(rs.getString("READCOUNT"));
-				//vo.setREGDATE(rs.getString("REGDATE")); 추후 칼럼 추가
+				vo.setREGDATE(rs.getString("REGDATE")); 
+				//vo.setREADCOUNT(rs.getString("READCOUNT")); 추후 칼럼 추가
 				//vo.setUSER_ID(rs.getString("USER_ID")); 추후 칼럼 추가
 				
 				boardList.add(vo);

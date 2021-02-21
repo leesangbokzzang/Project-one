@@ -14,6 +14,6 @@
 </script>
 </head>
 <body>
-	<a href="/board?cmd=FISRTLIST">게시판</a>
+	<h1>게시판페이지</h1>
 </body>
 </html>

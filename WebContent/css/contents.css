@@ -6,9 +6,9 @@
  * Container Common
  =================================================================================*/
 /*Layout */
-.sub-container-wrap{height:100%; width: calc(100% - 314px); float: right;}
-.sub-section-wrap {height:100%;}
-.sub-container{padding: 26px 30px; background-color: #f7f7f7; height: calc(100vh - 100px);}
+.sub-container-wrap{height:100%; width: 100%; float: right;}
+.sub-section-wrap {/* height:100%; */}
+.sub-container{padding: 26px 30px; background-color: #f7f7f7; height:100vh;}
 .h-cal-s1 {max-height:calc(100% - 150px);} /*search Box 한 줄일때 cont height 값 조정*/
 .col-1 {height:100%;}
 .col-1 section{height:100%;}
@@ -32,11 +32,15 @@ section .section-tit h3{font-size: 18px; font-weight: 800;}
 /*=================================================================================
  * Contents
  =================================================================================*/
+.logo{width:20%;}
+.logo a{color:#fff; font-size: 22px;}
+.header{width:100%; padding: 10px 110px; background: #525D76; display: flex;}
+.header ul{paddin-top: 10px; width: 80%; padding: 4px 0; display: flex;}
+.header ul li{width: 120px;}
+.header ul li a{color:#fff; display:inline-block; width: 100%;}
 
-.logo{color:#fff; font-size: 22px; width:20%;}
-.header{width:100%; padding: 10px 110px; background: #333; display: flex;}
-.header ul{paddin-top: 10px; width: 80%; padding: 4px 0;}
-.header ul li a{color:#fff;}
+/* 자유게시판 CSS */
+
 
 @media (max-width:1815px) { 
    

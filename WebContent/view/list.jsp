@@ -1,55 +1,69 @@
 <%@page import="java.util.List"%>
 <%@page import="pjt.one.com.vo.BoardListVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-<link rel="stylesheet" href="css/import.css" />
-<style></style>
-<script>
-	$(function() {
+    pageEncoding="UTF-8"%>
 
-	});
-</script>
-</head>
-<body>
-	<form action="" method="POST">
-		<table>
-			<caption>
-				<!-- 캡션 추가는 했는데 stylesheet에서 안보이게 설정되어 있네요, 일단 그냥 뒀음 -->
-				<h2>게시판 페이지</h2>
-			</caption>
-			<tr>
-				<th style="text-align: left;" colspan="5">BOARD <!-- 새글쓰기 버튼 추가, CMD는 BOARDWRITE -->
-					<input type="button" style="float: right" value="글쓰기"
-					onclick="location.href='/board?cmd=BOARDWRITE'" /></th>
-					<!-- 새글쓰기 CMD명 BOARDWRITE -->
-			</tr>
-			<tr>
-				<th>글번호</th>
-				<th>글제목</th>
-				<th>작성일</th>
-				<th>작성자</th>
-				<th>조회수</th>
-			</tr>
-			<c:forEach var="board" items="${requestScope.boardList }">
-				<tr>
-					<td>${ board.IDX }</td>
-					<!-- 게시글읽기 CMD명 BOARDREAD -->
-					<td><a href="/board?cmd=BOARDREAD&IDX=${ board.IDX }">${ board.TITLE }</a></td>
-					<td>${ board.REGDATE }</td>
-					<td>${ board.USER_ID }</td>
-					<td>${ board.READCOUNT }</td>
-				</tr>
-			</c:forEach>
-			
-		</table>
-	</form>
+<!--@include 파일을 이어서 붙힘  -->
+<%@include file="/layout/header.jsp" %>
+
+<div class="sub-main-wrap">
+        <div class="sub-container-wrap">
+            <div class="sub-container">
+            	<div class="btn-box">
+            		<ul>
+            			<li><a href="/board?cmd=BOARDWRITE" title="글쓰기">글쓰기</a></li>
+            		</ul>
+            	</div>
+                <div class="sub-section-wrap main-dashboard">
+                    <div>
+                        <section>
+                            <div class="section-tit">
+                                <h3>자유게시판</h3>
+                           <!--      <div class="btn-more">
+                                    <ul>
+                                        <li><a href="#" title=" 검토대기현황 더보기" class=""><img src="img/common/btn-more.png" alt="더보기"></a></li>
+                                    </ul>
+                                </div> -->
+                            </div>
+                            <div class="table-wrap scro-y-auto hp94">
+                                <table class="table-type01 freeBoard">
+                                    <caption>검토대기현황 테이블</caption>
+                                    <colgroup>
+                                        <col class="wp5">
+                                        <col class="wauto">
+                                        <col class="wp10">
+                                        <col class="wp8">
+                                        <col class="wp8">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>글번호</th>
+											<th>글제목</th>
+											<th>작성일</th>
+											<th>작성자</th>
+											<th>조회수</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach var="board" items="${requestScope.boardList }">
+											<tr>
+												<td>${ board.IDX }</td>
+												<!-- 게시글읽기 CMD명 BOARDREAD -->
+												<td><a href="/board?cmd=BOARDREAD&IDX=${ board.IDX }">${ board.TITLE }</a></td>
+												<td>${ board.REGDATE }</td>
+												<td>${ board.USER_ID }</td>
+												<td>${ board.READCOUNT }</td>
+											</tr>
+										</c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div><!--//sub-container-->
+        </div>
+    </div><!--//sub-main-wrap-->
+	
 </body>
 </html>

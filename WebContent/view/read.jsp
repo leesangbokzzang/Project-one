@@ -1,40 +1,86 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<style></style>
-<link rel="stylesheet" href="css/import.css" />
-<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script>
-	$(function(){
+    <style>
+		.contHeight{height: 500px;}
+		.contHeight > th {vertical-align: top;}	
+		.contHeight > td {vertical-align: top;}	
+</style>
+<%@include file="/layout/header.jsp" %>
 
-		});
-</script>
-</head>
-<body>
-	<table>
-	<caption><h2>게시글 읽기 - ${requestScope.vo.getTITLE()}</h2></caption>
-	<tr>
-		<td>${requestScope.vo.getTITLE()}</td> <td>${requestScope.vo.getREGDATE()}</td>
-		<td>${requestScope.vo.getUSER_ID()}</td> <td>${requestScope.vo.getREADCOUNT()}</td>
-	</tr>
-	<tr>
-		<td colspan="4">${requestScope.vo.getCONT()}</td>
-	</tr>
-	<tr>
-		<td colspan="4">
-			<input type="button" name="list" value="목록으로" onclick="javascript:history.back()" />
-														<!-- 글수정 CMD명 EDIT -->
-			<input type="button" name="edit" value="글수정" onclick="location.href='/board?cmd=EDIT'" />
-														<!-- 글삭제 CMD명 DELETE -->
-			<input type="button" name="delete" value="글삭제" onclick="location.href='/board?cmd=DELETE'" />
-		</td>
-	</tr>
-	</table>
+	<%-- <table>
+		<caption><h2>게시글 읽기 - ${requestScope.vo.getTITLE()}</h2></caption>
+		<tr>
+			<td>${requestScope.vo.getTITLE()}</td> <td>${requestScope.vo.getREGDATE()}</td>
+			<td>${requestScope.vo.getUSER_ID()}</td> <td>${requestScope.vo.getREADCOUNT()}</td>
+		</tr>
+		<tr>
+			<td colspan="4">${requestScope.vo.getCONT()}</td>
+		</tr>
+		<tr>
+			<td colspan="4">
+				<input type="button" name="list" value="목록으로" onclick="javascript:history.back()" />
+															<!-- 글수정 CMD명 EDIT -->
+				<input type="button" name="edit" value="글수정" onclick="location.href='/board?cmd=EDIT'" />
+															<!-- 글삭제 CMD명 DELETE -->
+				<input type="button" name="delete" value="글삭제" onclick="location.href='/board?cmd=DELETE'" />
+			</td>
+		</tr>
+	</table> --%>
+	
+<div class="sub-main-wrap">
+        <div class="sub-container-wrap">
+            <div class="sub-container">
+            	<div class="btn-box">
+            		<ul>
+            			<li><a href="/board?cmd=FISRTLIST" title="목록으로">목록으로</a></li>
+            			<li><a href="/board?cmd=EDIT" title="수정">수정</a></li>
+            			<li><a href="/board?cmd=DELETE" title="삭제">삭제</a></li>
+            		</ul>
+            	</div>
+                <div class="sub-section-wrap main-dashboard">
+                    <div>
+                        <section>
+                            <div class="section-tit">
+                                <h3>자유게시판</h3>
+                            </div>
+                            <div class="table-wrap scro-y-auto">
+                                <table class="table-type02">
+                                    <caption>검토대기현황 테이블</caption>
+                                    <colgroup>
+                                        <col class="wp6">
+                                        <col class="wauto">
+                                        <col class="wp5">
+                                        <col class="wp5">
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                        	<th>제목</th>
+                                        	<td>${requestScope.vo.getTITLE()}</td>
+                                        	<th>조회수</th>
+                                        	<td style="text-align:right">${requestScope.vo.getREADCOUNT()}</td>
+                                        </tr>
+                                        <tr class="contHeight">
+                                        	<th>내용</th>
+                                        	<td colspan="3">${requestScope.vo.getCONT()}</td>
+                                        </tr>
+                                        <tr>
+                                        	<th>작성일자</th>
+                                        	<td colspan="3">${requestScope.vo.getREGDATE()}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div><!--//sub-container-->
+        </div>
+    </div><!--//sub-main-wrap-->
+	
+</body>
+</html>	
+	
+	
 	<!-- 
 	파라미터전달 확인<br>
 	idx : ${requestScope.vo.getIDX() }<br>
@@ -44,5 +90,3 @@
 	readcount : ${requestScope.vo.getREADCOUNT()}<br>
 	cont : ${requestScope.vo.getCONT()}
 	 -->
-</body>
-</html>

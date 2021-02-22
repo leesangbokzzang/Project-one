@@ -24,6 +24,7 @@ public class BoardController extends HttpServlet {
 		requestFunc(request, response);
 	}
 	private void requestFunc(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		request.setCharacterEncoding("utf-8");
 		String cmd = request.getParameter("cmd");
 		

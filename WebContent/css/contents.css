@@ -1,0 +1,57 @@
+@charset "UTF-8";
+
+.sub-main-wrap {width:100%; min-width: 1400px; margin:0 auto; box-sizing: border-box;}
+
+/*=================================================================================
+ * Container Common
+ =================================================================================*/
+/*Layout */
+.sub-container-wrap{height:100%; width: calc(100% - 314px); float: right;}
+.sub-section-wrap {height:100%;}
+.sub-container{padding: 26px 30px; background-color: #f7f7f7; height: calc(100vh - 100px);}
+.h-cal-s1 {max-height:calc(100% - 150px);} /*search Box 한 줄일때 cont height 값 조정*/
+.col-1 {height:100%;}
+.col-1 section{height:100%;}
+.col-2{height: 100%;}
+.col-2 section{height: 100%;}
+.row-1 {width:100%;}
+
+/*Section*/
+section {background-color:#fff; border-radius: 25px; box-shadow: 0px 2px 3px 1px rgba(0, 0, 0.1, 0.1); padding:20px; margin-bottom:25px;}
+.section-tit{display: flex; justify-content: space-between; margin-bottom: 10px;}
+section .section-tit h3{font-size: 18px; font-weight: 800;}
+.section-tit dl{display: flex; width: 204px; background-color: #e9edf8; border-radius: 4px; text-align: center; padding: 10px 21px;}
+.section-tit dl dt{margin-right: 4px;}
+.section-tit dl dt,dd{font-size: 16px; font-weight: 600;}
+
+
+/* Month */
+.month-tit {display: flex; justify-content: center; margin-top:-20px;}
+.month-tit p {font-size:24px; font-weight: 800; margin:-4px 20px 0 20px;}
+
+/*=================================================================================
+ * Contents
+ =================================================================================*/
+
+.logo{color:#fff; font-size: 22px; width:20%;}
+.header{width:100%; padding: 10px 110px; background: #333; display: flex;}
+.header ul{paddin-top: 10px; width: 80%; padding: 4px 0;}
+.header ul li a{color:#fff;}
+
+@media (max-width:1815px) { 
+   
+}
+
+
+@media (max-width:1700px) { 
+    
+}
+
+@media (max-width:1600px) { 
+    
+}
+
+
+@media (max-width:1400px) { 
+    
+}

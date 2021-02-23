@@ -39,10 +39,32 @@ public class BoardController extends HttpServlet {
 			request.getRequestDispatcher(link).forward(request, response);
 		}
 		
-		if(cmd.equals("BOARDWRITE")) { //새글쓰기 CMD
+		if(cmd.equals("BOARDWRITEFORM")) { //새글쓰기 CMD
 			String link = "/view/write.jsp"; // 
 			request.getRequestDispatcher(link).forward(request, response);
 		}
+			
+		if(cmd.equals("BOARDWRITE")) {	
+			String title= request.getParameter("title");
+			String cont= request.getParameter("cont");
+			
+			cont=cont.replace("<", "&lt;");
+			cont=cont.replace(">", "&gt;");
+			
+			
+			BoardDao dao=new BoardDao();
+			dao.InsertBoared(title, cont);
+			
+		
+
+
+		 String link = "/board?cmd=FISRTLIST"; 
+		 request.getRequestDispatcher(link).forward(request, response);
+		
+
+		}
+		
+		
 		
 		if(cmd.equals("BOARDREAD")) { //게시글읽기 CMD
 			String idx = request.getParameter("IDX");

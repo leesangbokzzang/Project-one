@@ -11,7 +11,7 @@
             <div class="sub-container">
             	<div class="btn-box">
             		<ul>
-            			<li><a href="/board?cmd=BOARDWRITE" title="글쓰기">글쓰기</a></li>
+            			<li><a href="/board?cmd=BOARDWRITEFORM" title="글쓰기">글쓰기</a></li>
             		</ul>
             	</div>
                 <div class="sub-section-wrap main-dashboard">

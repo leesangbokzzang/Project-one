@@ -83,4 +83,61 @@ public class BoardDao {
 		}
 		return vo;
 	}
+	
+	public void InsertBoared ( String title, String cont) {
+		Connection 				conn  = null;
+		PreparedStatement 		pstmt = null;
+		ResultSet 				rs    = null;
+		DBConn 					db    = null;
+		
+		cont = cont.replace("<", "&lt;");
+		cont = cont.replace(">", "&gt;");
+		try {
+			db = new DBConn();
+			conn = db.getConnection();
+			String sql =  " insert into board(idx,title, cont)";
+			sql       +=  " values(";
+			sql       +=  " ( SELECT NVL(MAX(IDX),0)+1  FROM BOARD)";
+			sql       +=  " ,?, ?) ";
+			
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString (1, title);
+			pstmt.setString (2, cont);
+			
+			 pstmt.executeUpdate();
+			//IDX, TITLE, CONT, READCOUNT, REGDATE, USER_ID
+			
+				
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+				db.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }

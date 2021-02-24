@@ -1,6 +1,7 @@
 package pjt.one.com.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -76,8 +77,34 @@ public class BoardController extends HttpServlet {
 			request.getRequestDispatcher(link).forward(request, response);
 		}
 		if(cmd.equals("EDIT")) { //글수정 CMD
+			request.setCharacterEncoding("utf-8");
+			
+			String idx = request.getParameter("idx");
+			
+			BoardDao dao = new BoardDao();
+			BoardListVo listViewOne = dao.getListViewOne(idx);
+			
+			request.setAttribute("listViewOne", listViewOne);
+			
 			String link = "/view/edit.jsp";
 			request.getRequestDispatcher(link).forward(request, response);
+		}
+		if(cmd.equals("BOARDUPDATE")){
+			request.setCharacterEncoding("utf-8");
+			
+			String idx = request.getParameter("idx");
+			String title = request.getParameter("title");
+			String cont = request.getParameter("cont");
+			
+			
+			BoardDao dao = new BoardDao();
+			dao.BoardUpdate(idx, title, cont);
+			
+			PrintWriter out = response.getWriter();
+			
+			response.setContentType("text/html; charset=UTF-8");
+			out.println("<script>alert('UPDATE OK'); location.href='/board?cmd=FISRTLIST';</script>");
+			out.flush();
 		}
 		if(cmd.equals("DELETE")) { //글삭제 CMD
 			//삭제는 페이지 없어요 여기에 바로 코딩하시면됩니다

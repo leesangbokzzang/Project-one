@@ -10,7 +10,7 @@
 		form.onsubmit = function(e) {
 			var title = document.querySelector('[name=title]');
 			if(title.value==''){
-				alert('제목없음')
+				alert('제목을 입력하세요.');
 				title.focus();
 				return false;
 			}else{}
@@ -21,17 +21,14 @@
 			if(txt.indexOf('<') >=0 ) {
 				txt = txt.replace(/</gim, '&lt;');
 				txt.focus();
-				alert('그거 아니야')
 				return false;
 			}else if(txt.indexOf('>') >=0 ) {
 				txt = txt.replace(/</gim, '&gt;');
 				txt.focus();
-				alert('그거 아니야')
 				return false;
 			}else{}
 			
-			console.log(txt);
-			alert(txt);
+			
 			 			
 		}
 		

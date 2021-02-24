@@ -121,16 +121,87 @@ public class BoardDao {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		
-		
-		
 	}
-	
-	
-	
-	
-	
-	
+}
+
+	public BoardListVo getListViewOne(String idx) {
+		
+		BoardListVo bListVo = null;
+		Connection 				conn  = null;
+		PreparedStatement 		pstmt = null;
+		ResultSet 				rs    = null;
+		DBConn 					db    = null;
+		
+		
+		try {
+			db = new DBConn();
+			conn = db.getConnection();
+			String sql = "SELECT * FROM BOARD WHERE IDX = ?";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString (1, idx);
+			
+			 rs = pstmt.executeQuery();
+			 if(rs.next()) {
+				 
+				 String IDX = rs.getString("IDX");
+				 String TITLE = rs.getString("TITLE");
+				 String CONT = rs.getString("CONT");
+				 String READCOUNT = rs.getString("READCOUNT");
+				 String REGDATE = rs.getString("REGDATE");
+				 String USER_ID = rs.getString("USER_ID");
+				 
+				 bListVo = new BoardListVo(IDX, TITLE, CONT, READCOUNT, REGDATE, USER_ID);
+			 }
+			 
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs!=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+				db.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return bListVo;
+	}
+
+	public void BoardUpdate(String idx, String title, String cont) {
+		Connection 				conn  = null;
+		PreparedStatement 		pstmt = null;
+		ResultSet 				rs    = null;
+		DBConn 					db    = null;
+		
+		cont = cont.replace("<", "&lt;");
+		cont = cont.replace(">", "&gt;");
+		
+		try {
+			db = new DBConn();
+			conn = db.getConnection();
+			String sql = "UPDATE BOARD SET TITLE=?, CONT=? WHERE IDX = ?";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString (1, title);
+			pstmt.setString (2, cont);
+			pstmt.setString (3, idx);
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs!=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+				db.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	

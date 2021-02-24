@@ -32,8 +32,9 @@
             <div class="sub-container">
             	<div class="btn-box">
             		<ul>
+            			<li><a href="/board?cmd=BOARDWRITEFORM" title="글쓰기">글쓰기</a></li>
             			<li><a href="/board?cmd=FISRTLIST" title="목록으로">목록으로</a></li>
-            			<li><a href="/board?cmd=EDIT" title="수정">수정</a></li>
+            			<li><a href="/board?cmd=EDIT&idx=${vo.getIDX()}" title="수정">수정</a></li>
             			<li><a href="/board?cmd=DELETE" title="삭제">삭제</a></li>
             		</ul>
             	</div>

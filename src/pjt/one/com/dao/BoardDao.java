@@ -11,6 +11,8 @@ import pjt.one.com.db.DBConn;
 import pjt.one.com.vo.BoardListVo;
 
 public class BoardDao {
+	
+	//게시글 목록
 	public List<BoardListVo> getBoardList() {
 		List<BoardListVo>   boardList = new ArrayList<BoardListVo>();
 		Connection 				conn  = null;
@@ -84,7 +86,8 @@ public class BoardDao {
 		return vo;
 	}
 	
-	public void InsertBoared ( String title, String cont) {
+	
+	public void insertBoared ( String title, String cont) {
 		Connection 				conn  = null;
 		PreparedStatement 		pstmt = null;
 		ResultSet 				rs    = null;
@@ -169,8 +172,8 @@ public class BoardDao {
 		}
 		return bListVo;
 	}
-
-	public void BoardUpdate(String idx, String title, String cont) {
+	//게시글 수정
+	public void boardUpdate(String idx, String title, String cont) {
 		Connection 				conn  = null;
 		PreparedStatement 		pstmt = null;
 		ResultSet 				rs    = null;
@@ -202,6 +205,30 @@ public class BoardDao {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	//게시글 삭제
+	public void deleteBoard(String idx) {
+		Connection        conn  =null;
+		PreparedStatement pstmt = null;
+		DBConn db=new DBConn();
+		try {
+			conn=db.getConnection();
+			String sql="DELETE FROM BOARD WHERE IDX=?";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, idx);
+			pstmt.executeUpdate();	
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt!=null)pstmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
 	}
 	
 	

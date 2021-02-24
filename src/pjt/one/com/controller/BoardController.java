@@ -29,45 +29,40 @@ public class BoardController extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		String cmd = request.getParameter("cmd");
 		
-		if(cmd.equals("FISRTLIST")) { //메인리스트 CMD
+		//메인리스트 CMD
+		if(cmd.equals("FISRTLIST")) { 
 			BoardDao dao= new BoardDao();
 			List<BoardListVo> boardList = dao.getBoardList();
-			
-			//System.out.println(boardList); 리스트 불러오기 확인 ->OK!
 			request.setAttribute("boardList", boardList);
 			
 			String link = "/view/list.jsp";
 			request.getRequestDispatcher(link).forward(request, response);
 		}
+	
 		
-		if(cmd.equals("BOARDWRITEFORM")) { //새글쓰기 CMD
-			String link = "/view/write.jsp"; // 
+		//새글쓰기 CMD
+		if(cmd.equals("BOARDWRITEFORM")) { 
+			String link = "/view/write.jsp"; 
 			request.getRequestDispatcher(link).forward(request, response);
-		}
-			
+		}		
 		if(cmd.equals("BOARDWRITE")) {	
 			String title= request.getParameter("title");
 			String cont= request.getParameter("cont");
 			
 			cont=cont.replace("<", "&lt;");
-			cont=cont.replace(">", "&gt;");
-			
+			cont=cont.replace(">", "&gt;");		
 			
 			BoardDao dao=new BoardDao();
-			dao.InsertBoared(title, cont);
+			dao.insertBoared(title, cont);
 			
-		
-
-
 		 String link = "/board?cmd=FISRTLIST"; 
 		 request.getRequestDispatcher(link).forward(request, response);
 		
 
 		}
 		
-		
-		
-		if(cmd.equals("BOARDREAD")) { //게시글읽기 CMD
+		//게시글읽기 CMD
+		if(cmd.equals("BOARDREAD")) { 
 			String idx = request.getParameter("IDX");
 			BoardDao dao= new BoardDao();
 			BoardListVo vo = dao.getBoardRead(idx);
@@ -76,7 +71,9 @@ public class BoardController extends HttpServlet {
 			String link = "/view/read.jsp";
 			request.getRequestDispatcher(link).forward(request, response);
 		}
-		if(cmd.equals("EDIT")) { //글수정 CMD
+		
+		//글수정 CMD
+		if(cmd.equals("EDIT")) { 
 			request.setCharacterEncoding("utf-8");
 			
 			String idx = request.getParameter("idx");
@@ -98,7 +95,7 @@ public class BoardController extends HttpServlet {
 			
 			
 			BoardDao dao = new BoardDao();
-			dao.BoardUpdate(idx, title, cont);
+			dao.boardUpdate(idx, title, cont);
 			
 			PrintWriter out = response.getWriter();
 			
@@ -106,8 +103,20 @@ public class BoardController extends HttpServlet {
 			out.println("<script>alert('UPDATE OK'); location.href='/board?cmd=FISRTLIST';</script>");
 			out.flush();
 		}
-		if(cmd.equals("DELETE")) { //글삭제 CMD
-			//삭제는 페이지 없어요 여기에 바로 코딩하시면됩니다
+		
+		//글삭제 CMD
+		if(cmd.equals("DELETE")) { 
+			String idx = request.getParameter("idx");
+			System.out.println("idx="+idx);
+
+			//데이터 삭제
+			BoardDao dao= new BoardDao();
+			dao.deleteBoard(idx);
+
+			//삭제 후 글 목록으로 페이지 이동 
+			String link = "/board?cmd=FISRTLIST"; 
+			request.getRequestDispatcher(link).forward(request, response);
+
 		}
 	}
 

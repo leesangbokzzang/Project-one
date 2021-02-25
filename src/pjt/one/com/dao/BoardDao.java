@@ -62,7 +62,15 @@ public class BoardDao {
 		try {
 			db = new DBConn();
 			conn = db.getConnection();
-			String sql = "SELECT IDX, TITLE, REGDATE, USER_ID, READCOUNT,CONT FROM BOARD WHERE IDX=?";
+			
+			String sql = "UPDATE BOARD SET readcount= readcount+1  WHERE IDX = ?";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString (1, idx);
+		
+			pstmt.executeUpdate();
+			
+			 sql = "SELECT IDX, TITLE, REGDATE, USER_ID, READCOUNT,CONT FROM BOARD WHERE IDX=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, idx);
 			rs = pstmt.executeQuery();

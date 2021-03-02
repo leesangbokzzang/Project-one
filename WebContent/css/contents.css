@@ -32,7 +32,8 @@ section .section-tit h3{font-size: 18px; font-weight: 800;}
 /*=================================================================================
  * Contents
  =================================================================================*/
-.logo{width:30%;}
+
+.logo{width:20%;}
 .logo a{color:#fff; font-size: 22px;}
 .header{width:100%; padding: 10px 110px; background: #525D76; display: flex;}
 .header ul{paddin-top: 10px; width: 80%; padding: 4px 0; display: flex;}

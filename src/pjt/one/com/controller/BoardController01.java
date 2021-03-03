@@ -67,6 +67,9 @@ public class BoardController01 extends HttpServlet {
 			String idx = request.getParameter("IDX");
 			BoardDao01 dao= new BoardDao01();
 			BoardListVo vo = dao.getBoardRead(idx);
+			
+			vo.setCONT(vo.getCONT().replace("\n", "<br/>"));
+			
 			request.setAttribute("vo", vo);
 			
 			String link = "/view01/read01.jsp";

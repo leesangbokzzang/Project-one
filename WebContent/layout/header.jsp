@@ -19,6 +19,8 @@
 <div class="header">
 		<h1 class="logo"><a href="index.jsp" title="메인으로 가기">404 Team</a></h1>
 		<ul>
-			<li><a href="/board?cmd=FISRTLIST" title="게시판">게시판</a></li>
+			<li><a href="/board00?cmd=FISRTLIST" title="게시판">게시판00</a></li>
+			<li><a href="/board01?cmd=FISRTLIST" title="게시판">게시판01</a></li>
+			<li><a href="/board02?cmd=FISRTLIST" title="게시판">게시판02</a></li>
 		</ul>
 </div>

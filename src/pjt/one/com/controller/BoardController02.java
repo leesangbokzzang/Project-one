@@ -10,12 +10,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import pjt.one.com.dao.BoardDao;
+import pjt.one.com.dao.BoardDao02;
+import pjt.one.com.dao.BoardDao02;
 import pjt.one.com.vo.BoardListVo;
 
 
-@WebServlet("/board")
-public class BoardController extends HttpServlet {
+@WebServlet("/board02")
+public class BoardController02 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,18 +32,18 @@ public class BoardController extends HttpServlet {
 		
 		//메인리스트 CMD
 		if(cmd.equals("FISRTLIST")) { 
-			BoardDao dao= new BoardDao();
+			BoardDao02 dao= new BoardDao02();
 			List<BoardListVo> boardList = dao.getBoardList();
 			request.setAttribute("boardList", boardList);
 			
-			String link = "/view/list.jsp";
+			String link = "/view02/list02.jsp";
 			request.getRequestDispatcher(link).forward(request, response);
 		}
 	
 		
 		//새글쓰기 CMD
 		if(cmd.equals("BOARDWRITEFORM")) { 
-			String link = "/view/write.jsp"; 
+			String link = "/view02/write02.jsp"; 
 			request.getRequestDispatcher(link).forward(request, response);
 		}		
 		if(cmd.equals("BOARDWRITE")) {	
@@ -52,10 +53,10 @@ public class BoardController extends HttpServlet {
 			cont=cont.replace("<", "&lt;");
 			cont=cont.replace(">", "&gt;");		
 			
-			BoardDao dao=new BoardDao();
+			BoardDao02 dao=new BoardDao02();
 			dao.insertBoared(title, cont);
 			
-		 String link = "/board?cmd=FISRTLIST"; 
+		 String link = "/board02?cmd=FISRTLIST"; 
 		 request.getRequestDispatcher(link).forward(request, response);
 		
 
@@ -64,11 +65,11 @@ public class BoardController extends HttpServlet {
 		//게시글읽기 CMD
 		if(cmd.equals("BOARDREAD")) { 
 			String idx = request.getParameter("IDX");
-			BoardDao dao= new BoardDao();
+			BoardDao02 dao= new BoardDao02();
 			BoardListVo vo = dao.getBoardRead(idx);
 			request.setAttribute("vo", vo);
 			
-			String link = "/view/read.jsp";
+			String link = "/view02/read02.jsp";
 			request.getRequestDispatcher(link).forward(request, response);
 		}
 		
@@ -78,12 +79,12 @@ public class BoardController extends HttpServlet {
 			
 			String idx = request.getParameter("idx");
 			
-			BoardDao dao = new BoardDao();
+			BoardDao02 dao = new BoardDao02();
 			BoardListVo listViewOne = dao.getListViewOne(idx);
 			
 			request.setAttribute("listViewOne", listViewOne);
 			
-			String link = "/view/edit.jsp";
+			String link = "/view02/edit02.jsp";
 			request.getRequestDispatcher(link).forward(request, response);
 		}
 		if(cmd.equals("BOARDUPDATE")){
@@ -94,13 +95,13 @@ public class BoardController extends HttpServlet {
 			String cont = request.getParameter("cont");
 			
 			
-			BoardDao dao = new BoardDao();
+			BoardDao02 dao = new BoardDao02();
 			dao.boardUpdate(idx, title, cont);
 			
 			PrintWriter out = response.getWriter();
 			
 			response.setContentType("text/html; charset=UTF-8");
-			out.println("<script>alert('UPDATE OK'); location.href='/board?cmd=FISRTLIST';</script>");
+			out.println("<script>alert('UPDATE OK'); location.href='/board02?cmd=FISRTLIST';</script>");
 			out.flush();
 		}
 		
@@ -110,11 +111,11 @@ public class BoardController extends HttpServlet {
 			System.out.println("idx="+idx);
 
 			//데이터 삭제
-			BoardDao dao= new BoardDao();
+			BoardDao02 dao= new BoardDao02();
 			dao.deleteBoard(idx);
 
 			//삭제 후 글 목록으로 페이지 이동 
-			String link = "/board?cmd=FISRTLIST"; 
+			String link = "/board02?cmd=FISRTLIST"; 
 			request.getRequestDispatcher(link).forward(request, response);
 
 		}

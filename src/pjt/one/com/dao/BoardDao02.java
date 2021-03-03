@@ -10,7 +10,7 @@ import java.util.List;
 import pjt.one.com.db.DBConn;
 import pjt.one.com.vo.BoardListVo;
 
-public class BoardDao {
+public class BoardDao02 {
 	
 	//게시글 목록
 	public List<BoardListVo> getBoardList() {

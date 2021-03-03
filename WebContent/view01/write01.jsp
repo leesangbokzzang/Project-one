@@ -10,10 +10,11 @@
 		form.onsubmit = function(e) {
 			var title = document.querySelector('[name=title]');
 			if(title.value==''){
-				alert('제목을 입력하세요.')
+				alert('제목을 입력하세요.');
 				title.focus();
 				return false;
 			}else{}
+			
 			
 			 var ta= document.querySelector('textarea');
 			var txt = ta.value;
@@ -26,11 +27,16 @@
 				txt.focus();
 				return false;
 			}else{}
+			
+			
 			 			
 		}
 		
 		
 	})
+
+
+
 </script>
 <!--@include 파일을 이어서 붙힘  -->
 
@@ -39,24 +45,24 @@
             <div class="sub-container">
             	<!-- <div class="btn-box">
             		<ul>
-            			<li><a href="/board?cmd=BOARD" title="작성">작성</a></li>
+            			<li><a href="/board01?cmd=BOARD" title="작성">작성</a></li>
             		</ul>
             	</div> -->
                 <div class="sub-section-wrap main-dashboard">
                     <div>
-                    	<div class="btn-box">
-                                    <ul>
-                                        <li><a href="javascript:history.back();" title="취소">취소</a></li>
-                                    </ul>
-                                </div>
                         <section>
                             <div class="section-tit">
-                                <h3>글 수정</h3>
+                                <h3>새 글 쓰기</h3>
+                           <!--      <div class="btn-more">
+                                    <ul>
+                                        <li><a href="#" title=" 검토대기현황 더보기" class=""><img src="img/common/btn-more.png" alt="더보기"></a></li>
+                                    </ul>
+                                </div> -->
                             </div>
                             <div class="table-wrap scro-y-auto hp94">
-                             <form action ="/board?cmd=BOARDUPDATE&idx=${listViewOne.getIDX()}" method="POST">
+                             <form action ="/board01?cmd=BOARDWRITE" method= "POST">
                                 <table class="table-type02 freeBoard">
-                                    <caption>글수정 테이블</caption>
+                                    <caption>검토대기현황 테이블</caption>
                                     <colgroup>
                                         <col class="wp5">
                                         <col class="wauto">
@@ -64,15 +70,15 @@
                                     <tbody>
                                         <tr>
 											 <th>제목</th>
-											 <td><input type ="text" name="title" value="${listViewOne.getTITLE()}"></td>
+											 <td><input type ="text" name ="title" /></td>
 										</tr>
 										<tr>
 											 <th>내용</th>
-											 <td><textarea name="cont" rows="10" cols ="80" maxlwngth ="1000">${listViewOne.getCONT()} </textarea> </td>
+											 <td><textarea name="cont" rows="10" cols ="80" maxlwngth ="1000"> </textarea> </td>
 										</tr>
 										<tr>
 											<td colspan="2">
-												<input type = "submit" value="수정" />
+												<input type = "submit" value="작성" />
 											</td>
 										</tr>
                                     </tbody>

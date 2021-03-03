@@ -20,9 +20,9 @@
 			<td colspan="4">
 				<input type="button" name="list" value="목록으로" onclick="javascript:history.back()" />
 															<!-- 글수정 CMD명 EDIT -->
-				<input type="button" name="edit" value="글수정" onclick="location.href='/board?cmd=EDIT'" />
+				<input type="button" name="edit" value="글수정" onclick="location.href='/board02?cmd=EDIT'" />
 															<!-- 글삭제 CMD명 DELETE -->
-				<input type="button" name="delete" value="글삭제" onclick="location.href='/board?cmd=DELETE'" />
+				<input type="button" name="delete" value="글삭제" onclick="location.href='/board02?cmd=DELETE'" />
 			</td>
 		</tr>
 	</table> --%>
@@ -32,10 +32,10 @@
             <div class="sub-container">
             	<div class="btn-box">
             		<ul>
-            			<li><a href="/board?cmd=BOARDWRITEFORM" title="글쓰기">글쓰기</a></li>
-            			<li><a href="/board?cmd=FISRTLIST" title="목록으로">목록으로</a></li>
-            			<li><a href="/board?cmd=EDIT&idx=${vo.getIDX()}" title="수정">수정</a></li>
-            			<li><a href="/board?cmd=DELETE&idx=${vo.getIDX()}" title="삭제">삭제</a></li>
+            			<li><a href="/board02?cmd=BOARDWRITEFORM" title="글쓰기">글쓰기</a></li>
+            			<li><a href="/board02?cmd=FISRTLIST" title="목록으로">목록으로</a></li>
+            			<li><a href="/board02?cmd=EDIT&idx=${vo.getIDX()}" title="수정">수정</a></li>
+            			<li><a href="/board02?cmd=DELETE&idx=${vo.getIDX()}" title="삭제">삭제</a></li>
             		</ul>
             	</div>
                 <div class="sub-section-wrap main-dashboard">

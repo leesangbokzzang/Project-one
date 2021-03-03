@@ -11,7 +11,7 @@
             <div class="sub-container">
             	<div class="btn-box">
             		<ul>
-            			<li><a href="/board?cmd=BOARDWRITEFORM" title="글쓰기">글쓰기</a></li>
+            			<li><a href="/board00?cmd=BOARDWRITEFORM" title="글쓰기">글쓰기</a></li>
             		</ul>
             	</div>
                 <div class="sub-section-wrap main-dashboard">
@@ -49,7 +49,7 @@
 											<tr>
 												<td>${ board.IDX }</td>
 												<!-- 게시글읽기 CMD명 BOARDREAD -->
-												<td><a href="/board?cmd=BOARDREAD&IDX=${ board.IDX }">${ board.TITLE }</a></td>
+												<td><a href="/board00?cmd=BOARDREAD&IDX=${ board.IDX }">${ board.TITLE }</a></td>
 												<td>${ board.REGDATE }</td>
 												<td>${ board.USER_ID }</td>
 												<td>${ board.READCOUNT }</td>

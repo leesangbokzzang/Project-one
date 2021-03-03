@@ -23,7 +23,7 @@ public class BoardDao01 {
 		try {
 			db = new DBConn();
 			conn = db.getConnection();
-			String sql = "SELECT IDX, TITLE, REGDATE, NVL(READCOUNT,0) READCOUNT, USER_ID FROM BOARD"
+			String sql = "SELECT IDX, TITLE, REGDATE, NVL(READCOUNT,0) READCOUNT, USER_ID FROM BOARD2"
 					   + " ORDER BY IDX DESC ";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -63,14 +63,14 @@ public class BoardDao01 {
 			db = new DBConn();
 			conn = db.getConnection();
 			
-			String sql = "UPDATE BOARD SET readcount= readcount+1  WHERE IDX = ?";
+			String sql = "UPDATE BOARD2 SET readcount= readcount+1  WHERE IDX = ?";
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString (1, idx);
 		
 			pstmt.executeUpdate();
 			
-			 sql = "SELECT IDX, TITLE, REGDATE, USER_ID, READCOUNT,CONT FROM BOARD WHERE IDX=?";
+			 sql = "SELECT IDX, TITLE, REGDATE, USER_ID, READCOUNT,CONT FROM BOARD2 WHERE IDX=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, idx);
 			rs = pstmt.executeQuery();
@@ -106,7 +106,7 @@ public class BoardDao01 {
 		try {
 			db = new DBConn();
 			conn = db.getConnection();
-			String sql =  " insert into board(idx,title, cont)";
+			String sql =  " insert into board2(idx,title, cont)";
 			sql       +=  " values(";
 			sql       +=  " ( SELECT NVL(MAX(IDX),0)+1  FROM BOARD)";
 			sql       +=  " ,?, ?) ";
@@ -147,7 +147,7 @@ public class BoardDao01 {
 		try {
 			db = new DBConn();
 			conn = db.getConnection();
-			String sql = "SELECT * FROM BOARD WHERE IDX = ?";
+			String sql = "SELECT * FROM BOARD2 WHERE IDX = ?";
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString (1, idx);
@@ -193,7 +193,7 @@ public class BoardDao01 {
 		try {
 			db = new DBConn();
 			conn = db.getConnection();
-			String sql = "UPDATE BOARD SET TITLE=?, CONT=? WHERE IDX = ?";
+			String sql = "UPDATE BOARD2 SET TITLE=?, CONT=? WHERE IDX = ?";
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString (1, title);
@@ -222,7 +222,7 @@ public class BoardDao01 {
 		DBConn db=new DBConn();
 		try {
 			conn=db.getConnection();
-			String sql="DELETE FROM BOARD WHERE IDX=?";
+			String sql="DELETE FROM BOARD2 WHERE IDX=?";
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, idx);
 			pstmt.executeUpdate();	

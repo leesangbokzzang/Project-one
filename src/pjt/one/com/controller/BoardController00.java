@@ -30,7 +30,7 @@ public class BoardController00 extends HttpServlet {
 		String cmd = request.getParameter("cmd");
 		
 		//메인리스트 CMD
-		if(cmd.equals("FISRTLIST")) { 
+		if(cmd.equals("FIRSTLIST")) { 
 			BoardDao00 dao= new BoardDao00();
 			List<BoardListVo> boardList = dao.getBoardList();
 			request.setAttribute("boardList", boardList);
@@ -55,7 +55,7 @@ public class BoardController00 extends HttpServlet {
 			BoardDao00 dao=new BoardDao00();
 			dao.insertBoared(title, cont);
 			
-		 String link = "/board00?cmd=FISRTLIST"; 
+		 String link = "/board00?cmd=FIRSTLIST"; 
 		 request.getRequestDispatcher(link).forward(request, response);
 		
 
@@ -104,7 +104,7 @@ public class BoardController00 extends HttpServlet {
 			PrintWriter out = response.getWriter();
 			
 			response.setContentType("text/html; charset=UTF-8");
-			out.println("<script>alert('UPDATE OK'); location.href='/board00?cmd=FISRTLIST';</script>");
+			out.println("<script>alert('UPDATE OK'); location.href='/board00?cmd=FIRSTLIST';</script>");
 			out.flush();
 		}
 		
@@ -118,7 +118,7 @@ public class BoardController00 extends HttpServlet {
 			dao.deleteBoard(idx);
 
 			//삭제 후 글 목록으로 페이지 이동 
-			String link = "/board00?cmd=FISRTLIST"; 
+			String link = "/board00?cmd=FIRSTLIST"; 
 			request.getRequestDispatcher(link).forward(request, response);
 
 		}

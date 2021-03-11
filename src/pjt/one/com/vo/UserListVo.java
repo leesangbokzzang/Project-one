@@ -1,51 +1,72 @@
 package pjt.one.com.vo;
 
 public class UserListVo {
-	private String USER_ID;
-	private String USER_NAME;
-	private String USER_PWD;
-	private String USER_PHONE;
-	private String ADDRESS;
-	public UserListVo(String USER_ID, String USER_NAME, String USER_PWD, String USER_PHONE, String ADDRESS) {
-		this.USER_ID = USER_ID;
-		this.USER_NAME = USER_NAME;
-		this.USER_PWD = USER_PWD;
-		this.USER_PHONE = USER_PHONE;
-		this.ADDRESS = ADDRESS;
+	//in_id,in_pw,in_name,in_gender,in_tel,in_addr,in_email
+	private String user_id;
+	private String user_name;
+	private String user_pwd;
+	private String user_phone;
+	private String address;
+	private String gender;
+	private String email;
+	public UserListVo() {}
+	public UserListVo(String user_id, String user_name, String user_pwd, String user_phone, String address,
+			String gender, String email) {
+		this.user_id = user_id;
+		this.user_name = user_name;
+		this.user_pwd = user_pwd;
+		this.user_phone = user_phone;
+		this.address = address;
+		this.gender = gender;
+		this.email = email;
 	}
-	public String getUSER_ID() {
-		return USER_ID;
+	public String getUser_id() {
+		return user_id;
 	}
-	public void setUSER_ID(String USER_ID) {
-		this.USER_ID = USER_ID;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
-	public String getUSER_NAME() {
-		return USER_NAME;
+	public String getUser_name() {
+		return user_name;
 	}
-	public void setUSER_NAME(String USER_NAME) {
-		this.USER_NAME = USER_NAME;
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
 	}
-	public String getUSER_PWD() {
-		return USER_PWD;
+	public String getUser_pwd() {
+		return user_pwd;
 	}
-	public void setUSER_PWD(String USER_PWD) {
-		this.USER_PWD = USER_PWD;
+	public void setUser_pwd(String user_pwd) {
+		this.user_pwd = user_pwd;
 	}
-	public String getUSER_PHONE() {
-		return USER_PHONE;
+	public String getUser_phone() {
+		return user_phone;
 	}
-	public void setUSER_PHONE(String USER_PHONE) {
-		this.USER_PHONE = USER_PHONE;
+	public void setUser_phone(String user_phone) {
+		this.user_phone = user_phone;
 	}
-	public String getADDRESS() {
-		return ADDRESS;
+	public String getAddress() {
+		return address;
 	}
-	public void setADDRESS(String ADDRESS) {
-		this.ADDRESS = ADDRESS;
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	@Override
 	public String toString() {
-		return "UserListVo [USER_ID=" + USER_ID + ", USER_NAME=" + USER_NAME + ", USER_PWD=" + USER_PWD
-				+ ", USER_PHONE=" + USER_PHONE + ", ADDRESS=" + ADDRESS + "]";
+		return "UserListVo [user_id=" + user_id + ", user_name=" + user_name + ", user_pwd=" + user_pwd
+				+ ", user_phone=" + user_phone + ", address=" + address + ", gender=" + gender + ", email=" + email
+				+ "]";
 	}
+	
 }

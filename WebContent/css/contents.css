@@ -8,7 +8,7 @@
 /*Layout */
 .sub-container-wrap{height:100%; width: 100%; float: right;}
 .sub-section-wrap {/* height:100%; */}
-.sub-container{padding: 26px 30px; background-color: #f7f7f7; height:100vh;}
+.sub-container{padding: 26px 30px; background-color: #f7f7f7; height:100%;}
 .h-cal-s1 {max-height:calc(100% - 150px);} /*search Box 한 줄일때 cont height 값 조정*/
 .col-1 {height:100%;}
 .col-1 section{height:100%;}
@@ -18,7 +18,7 @@
 
 /*Section*/
 section {background-color:#fff; border-radius: 25px; box-shadow: 0px 2px 3px 1px rgba(0, 0, 0.1, 0.1); padding:20px; margin-bottom:25px;}
-.section-tit{display: flex; justify-content: space-between; margin-bottom: 10px;}
+.section-tit{display: flex; justify-content: space-between; margin-bottom: 10px; margin-top: 26px;}
 section .section-tit h3{font-size: 18px; font-weight: 800;}
 .section-tit dl{display: flex; width: 204px; background-color: #e9edf8; border-radius: 4px; text-align: center; padding: 10px 21px;}
 .section-tit dl dt{margin-right: 4px;}
@@ -33,17 +33,37 @@ section .section-tit h3{font-size: 18px; font-weight: 800;}
  * Contents
  =================================================================================*/
 
-.logo{width:20%;}
-.logo a{color:#fff; font-size: 22px;}
-.header{width:100%; padding: 10px 110px; background: #525D76; display: flex;}
+.logo{color:#fff; font-size: 22px; width:20%;}
+.header{width:100%; padding: 10px 52px; background: #525D76; display: flex;}
 .header ul{paddin-top: 10px; width: 80%; padding: 4px 0; display: flex;}
 .header ul li{width: 120px;}
 .header ul li a{color:#fff; display:inline-block; width: 100%;}
 
-/*submit 버튼 CSS */
-input[type="submit"]{border:0;    font-size: 15px; display: block; padding: 7px 17px;color: #fff; background-color: #525D76; border-radius: 6px; float :right;}
-
-/* 자유게시판 CSS */
+/* User CSS */
+.user-wrap{position: relative; width: 30%; display: flex; justify-content: flex-end;}
+.user-wrap .user-img{width: 40px; height: 40px; border-radius: 50%; box-sizing: border-box; overflow: hidden; margin-top: -4px;}
+.user-wrap .user-img a{width: 100%; height: 100%; border-radius: 100%; background-position: -900px -500px;}
+.user-wrap .user-img img{width: 100%; height: auto; margin-top: -2px;}
+.user-info-txt{padding:8px; margin: -2px 18px 0 0; }
+.user-info-txt ul{display: flex;}
+.user-info-txt ul .user-team{color: #b1e766; margin-right: 6px; font-weight: 600;}
+.user-info-txt ul .user-name{cursor: pointer;}
+.user-info-txt ul li{font-size: 16px; color: #fff;}
+.user-info-txt ul li span{margin-left: 4px; position: relative; vertical-align: bottom;}
+.user-info-txt ul li span::after{content: ""; position: absolute; top: 6px;
+right: -14px; display: inline-block; width: 0; height: 0; border-top: 5px solid #fff; border-left: 5px solid transparent; border-right: 5px solid transparent; cursor: pointer;}
+.user-wrap .user-info{display: none;position: absolute;top: 43px;right: 0;background-color: #fff;box-shadow: 2px 2px 4px 2px rgba(0,0,0.1, 0.1);border-radius: 4px;text-align: center;padding: 20px;width: 220px; z-index: 99999;}
+.header-wrap .user-wrap .user-info::before{content: ""; position: absolute;top: -10px;right: 54px;display: inline-block;width: 0;height: 0;border-top: 4px solid none; border-bottom: 10px solid #fff; border-left: 10px solid transparent; border-right: 10px solid transparent;}
+.user-wrap .user-img{width: 40px;height: 40px;border-radius: 50%;box-sizing: border-box; overflow: hidden;}
+.user-wrap .user-info .user-img{width: 58px;height: 58px;margin: 0 auto;}
+.user-wrap .user-info .user-name{padding-top: 10px; font-size: 15px;}
+.user-wrap .user-info .user-team{font-size: 12px;padding: 5px 0 10px 0;display: flex;justify-content: center;}
+.user-wrap .user-info .user-team li{color: #555;border-right: 1px solid #ccc;padding: 0 5px;}
+.user-wrap .user-info .user-access{color: #555; font-size: 12px;}
+.user-wrap .user-info .user-logout{display: flex;justify-content: center;padding-top: 15px; width: 100% !important;}
+.user-wrap .user-info .user-logout li{border-right: 1px solid #ccc; padding: 0 5px;}
+.user-wrap .user-info .user-logout li:last-child{border-right: 0;}
+.sub-header .user-wrap .user-info .user-team li:last-child{border-right: 0;}
 
 
 @media (max-width:1815px) { 

@@ -108,7 +108,7 @@ public class BoardDao02 {
 			conn = db.getConnection();
 			String sql =  " insert into board2(idx,title, cont)";
 			sql       +=  " values(";
-			sql       +=  " ( SELECT NVL(MAX(IDX),0)+1  FROM BOARD)";
+			sql       +=  " ( SELECT NVL(MAX(IDX),0)+1  FROM BOARD2)";
 			sql       +=  " ,?, ?) ";
 			
 			

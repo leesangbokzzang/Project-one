@@ -33,7 +33,7 @@
             	<div class="btn-box">
             		<ul>
             			<li><a href="/board01?cmd=BOARDWRITEFORM" title="글쓰기">글쓰기</a></li>
-            			<li><a href="/board01?cmd=FISRTLIST" title="목록으로">목록으로</a></li>
+            			<li><a href="/board01?cmd=FIRSTLIST" title="목록으로">목록으로</a></li>
             			<li><a href="/board01?cmd=EDIT&idx=${vo.getIDX()}" title="수정">수정</a></li>
             			<li><a href="/board01?cmd=DELETE&idx=${vo.getIDX()}" title="삭제">삭제</a></li>
             		</ul>

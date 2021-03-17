@@ -118,4 +118,40 @@ public class UserDao01 {
 		return email_dup;
 	}
 
+	public UserListVo loginCheck(String in_id, String in_pw) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		DBConn db = null;
+		UserListVo vo = new UserListVo();
+		try {
+			db = new DBConn();
+			conn = db.getConnection();
+			String sql = "SELECT USER_ID, USER_NAME, USER_PWD, USER_PHONE, ADDRESS, REGDATE, EMAIL, GENDER"
+					+ "  FROM USER_INFO WHERE USER_ID = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, in_id);
+			rs = pstmt.executeQuery();
+			rs.next();
+			String user_pwd = rs.getString("USER_PWD");
+			if(in_pw.equals(user_pwd)) {
+				//비번 일치하면 수행할 proc
+				vo.setUser_id(rs.getString("USER_ID"));
+				vo.setUser_name(rs.getString("USER_NAME"));
+				vo.setUser_pwd(rs.getString("USER_PWD"));
+				vo.setUser_phone(rs.getString("USER_PHONE"));
+				vo.setAddress(rs.getString("ADDRESS"));
+				vo.setEmail(rs.getString("EMAIL"));
+				vo.setGender(rs.getString("GENDER"));
+				
+			} else {
+				//비번 불일치하면 수행할 proc
+				vo.setUser_id(rs.getString("USER_ID")+" incorrect");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return vo;
+	}
+
 }

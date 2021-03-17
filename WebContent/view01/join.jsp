@@ -236,8 +236,8 @@
 										<tr>
 											<th>성별</th>
 											<td><input type="radio" name="in_gender" value="남자"
-												checked="checked" />남자 <input type="radio" name="in_gender"
-												value="여자" />여자</td>
+												checked="checked" style="appearance: auto" /> 남자 <input type="radio" name="in_gender"
+												value="여자" style="appearance: auto" /> 여자</td>
 										</tr>
 										<tr>
 											<th>전화번호</th>
@@ -261,12 +261,12 @@
 										<tr>
 											<th>주소</th>
 											<td><input type="text" name="in_addr1" id="in_addr1" class="wp65"/>
-											<br><span id="addr_check"><b class="red">필수입력</b></span>
 												<div class="btn-box" style="float:right">
 													<ul>
 														<li><a href="#" id="addr">우편번호</a></li>
 													</ul>
 												</div>
+											<br><span id="addr_check"><b class="red">필수입력</b></span>
 											</td>
 										</tr>
 										<tr>

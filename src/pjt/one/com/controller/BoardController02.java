@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import pjt.one.com.dao.BoardDao02;
 import pjt.one.com.dao.BoardDao02;
@@ -32,12 +33,17 @@ public class BoardController02 extends HttpServlet {
 		
 		//메인리스트 CMD
 		if(cmd.equals("FIRSTLIST")) { 
+			HttpSession session = request.getSession();
+			String user_name = (String) session.getAttribute("user_id");
+			if(user_name==null) {
+				response.sendRedirect("/user?cmd=LOGINFORM");
+			} else {
 			BoardDao02 dao= new BoardDao02();
 			List<BoardListVo> boardList = dao.getBoardList();
 			request.setAttribute("boardList", boardList);
-			
 			String link = "/view02/list02.jsp";
 			request.getRequestDispatcher(link).forward(request, response);
+			}
 		}
 	
 		

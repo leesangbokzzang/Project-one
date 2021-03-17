@@ -1,6 +1,12 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	String user_name = (String)session.getAttribute("user_name"); 
+	//object테이터타입이기에 명시적형변환으로 (String)을 해줘야한다.
+	
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +25,10 @@
 		});
 		$(".user-info").mouseleave(function() {
 			$(this).hide();
-		})
+		});
+		/* if('${user_name}'!=''){
+		alert('${user_name}'+'님 반갑습니다');
+		}; */
 	});
 </script>
 </head>
@@ -29,14 +38,18 @@
 		<c:choose>
 				<c:when test="${empty sessionScope.user_id}">
 					<ul>
-						<li><a href="/board01?cmd=FIRSTLIST" title="게시판">게시판</a></li>
+						<li><a href="/board00?cmd=FIRSTLIST" title="게시판">게시판00</a></li>
+						<li><a href="/board01?cmd=FIRSTLIST" title="게시판">게시판01</a></li>
+						<li><a href="/board02?cmd=FIRSTLIST" title="게시판">게시판02</a></li>
 						<li><a href="/user?cmd=JOINFORM" title="회원가입">회원가입</a></li>
 						<li><a href="/user?cmd=LOGINFORM" title="로그인">로그인</a></li>
 					</ul>
 				</c:when>
 				<c:otherwise>
 					<ul>
-						<li><a href="/board01?cmd=FIRSTLIST" title="게시판">게시판</a></li>
+						<li><a href="/board00?cmd=FIRSTLIST" title="게시판">게시판00</a></li>
+						<li><a href="/board01?cmd=FIRSTLIST" title="게시판">게시판01</a></li>
+						<li><a href="/board02?cmd=FIRSTLIST" title="게시판">게시판02</a></li>
 					</ul>
 					<div class="user-wrap">
 			               <div class="user-info-txt">

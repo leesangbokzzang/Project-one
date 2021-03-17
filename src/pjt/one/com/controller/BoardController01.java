@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import pjt.one.com.dao.BoardDao01;
 import pjt.one.com.dao.BoardDao01;
@@ -31,20 +32,28 @@ public class BoardController01 extends HttpServlet {
 		String cmd = request.getParameter("cmd");
 		
 		//메인리스트 CMD
-		if(cmd.equals("FIRSTLIST")) { 
+		if(cmd.equals("FIRSTLIST")) {
+			
 			BoardDao01 dao= new BoardDao01();
 			List<BoardListVo> boardList = dao.getBoardList();
 			request.setAttribute("boardList", boardList);
 			
 			String link = "/view01/list01.jsp";
 			request.getRequestDispatcher(link).forward(request, response);
+			
 		}
 	
 		
 		//새글쓰기 CMD
-		if(cmd.equals("BOARDWRITEFORM")) { 
+		if(cmd.equals("BOARDWRITEFORM")) {
+			HttpSession session = request.getSession();
+			String user_name = (String) session.getAttribute("user_id");
+			if(user_name==null) {
+				response.sendRedirect("/user?cmd=LOGINFORM");
+			} else {
 			String link = "/view01/write01.jsp"; 
 			request.getRequestDispatcher(link).forward(request, response);
+			}
 		}		
 		if(cmd.equals("BOARDWRITE")) {	
 			String title= request.getParameter("title");
@@ -63,7 +72,12 @@ public class BoardController01 extends HttpServlet {
 		}
 		
 		//게시글읽기 CMD
-		if(cmd.equals("BOARDREAD")) { 
+		if(cmd.equals("BOARDREAD")) {
+			HttpSession session = request.getSession();
+			String user_name = (String) session.getAttribute("user_id");
+			if(user_name==null) {
+				response.sendRedirect("/user?cmd=LOGINFORM");
+			} else {
 			String idx = request.getParameter("IDX");
 			BoardDao01 dao= new BoardDao01();
 			BoardListVo vo = dao.getBoardRead(idx);
@@ -74,6 +88,7 @@ public class BoardController01 extends HttpServlet {
 			
 			String link = "/view01/read01.jsp";
 			request.getRequestDispatcher(link).forward(request, response);
+			}
 		}
 		
 		//글수정 CMD

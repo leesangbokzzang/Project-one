@@ -6,9 +6,11 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import pjt.one.com.dao.BoardDao01;
 import pjt.one.com.dao.UserDao01;
@@ -47,6 +49,62 @@ public class UserController01 extends HttpServlet {
 			out.println("<script>alert('회원가입이 완료되었습니다'); location.href='../index.jsp'</script>");
 			out.flush();
 			
+		}
+		if(cmd.equals("LOGINFORM")) {
+			String path = "/view01/loginform.jsp";
+			request.getRequestDispatcher(path).forward(request, response);
+		}
+		if(cmd.equals("LOGIN")) {
+			String in_id = request.getParameter("in_id");
+			String in_pw = request.getParameter("in_pw");
+			UserDao01 userDao = new UserDao01();
+			UserListVo userVo = userDao.loginCheck(in_id, in_pw);
+			System.out.println(userVo);
+			System.out.println(userVo.getUser_id());
+			
+			if(userVo.getUser_id().equals(in_id)) {
+				//로그인 성공 시 (user_id)
+				HttpSession session = request.getSession();
+				session.setAttribute("user_id", userVo.getUser_id());		//여기서 vo값 세션에 저장, 배열값으로 저장 가능한지?아니면 각각?
+				session.setAttribute("user_name", userVo.getUser_name());
+				String cookie = request.getParameter("idrmb");
+				if(cookie!=null) {
+					Cookie c = new Cookie("idsave", in_id);
+					c.setComment("아이디 저장");
+					// 쿠키 유효기간을 설정한다. 초단위 : 60*60*24= 1일
+				    c.setMaxAge(60*60*30);
+				    // 응답헤더에 쿠키를 추가한다.
+				    response.addCookie(c);
+				}else {
+					Cookie c = new Cookie("idsave", "");
+					c.setComment("아이디 저장");
+					c.setMaxAge(60*60*30);
+					response.addCookie(c);
+				}
+				/*
+				 * String path = "/board01?cmd=FIRSTLIST";
+				 * request.getRequestDispatcher(path).forward(request,response);
+				 */
+				 response.setContentType("text/html; charset=UTF-8");
+				 PrintWriter out = response.getWriter();
+				 out.println("<script>location.href='../index.jsp'; </script>");
+				 out.flush();
+				 
+			} else {
+				//로그인 실패 시 (user_id + incorrect)
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('로그인에 실패했습니다'); location.href='javascript:history.go(-1);'</script>");
+				out.flush();
+			}
+		}
+		if(cmd.equals("LOGOUT")) {
+			HttpSession session = request.getSession();
+			session.invalidate();
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('로그아웃 되었습니다'); location.href='../index.jsp'</script>");
+			out.flush();
 		}
 	}
 

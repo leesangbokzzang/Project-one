@@ -54,6 +54,7 @@ public class UserController01 extends HttpServlet {
 			String path = "/view01/loginform.jsp";
 			request.getRequestDispatcher(path).forward(request, response);
 		}
+		
 		if(cmd.equals("LOGIN")) {
 			String in_id = request.getParameter("in_id");
 			String in_pw = request.getParameter("in_pw");
@@ -75,7 +76,7 @@ public class UserController01 extends HttpServlet {
 				    c.setMaxAge(60*60*30);
 				    // 응답헤더에 쿠키를 추가한다.
 				    response.addCookie(c);
-				}else {
+				} else {
 					Cookie c = new Cookie("idsave", "");
 					c.setComment("아이디 저장");
 					c.setMaxAge(60*60*30);

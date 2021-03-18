@@ -4,12 +4,14 @@
 
 <%
 	Cookie[] cookies = request.getCookies();
+	String idsave = "";
     for(Cookie cookie:cookies){
     	System.out.println("쿠키명 : "+cookie.getName());
     	System.out.println("쿠키값 : "+cookie.getValue());
     }
-   String idsave = cookies[0].getValue();
-	
+    if(cookies.length>0){
+    idsave = cookies[0].getValue();
+    } 
 
 %>
 <!DOCTYPE html>

@@ -67,7 +67,6 @@ public class BoardController01 extends HttpServlet {
 			
 		 String link = "/board01?cmd=FIRSTLIST"; 
 		 request.getRequestDispatcher(link).forward(request, response);
-		
 
 		}
 		

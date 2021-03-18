@@ -72,6 +72,7 @@ public class BoardController01 extends HttpServlet {
 		
 		//게시글읽기 CMD
 		if(cmd.equals("BOARDREAD")) {
+			
 			HttpSession session = request.getSession();
 			String user_name = (String) session.getAttribute("user_id");
 			if(user_name==null) {
@@ -88,6 +89,7 @@ public class BoardController01 extends HttpServlet {
 			String link = "/view01/read01.jsp";
 			request.getRequestDispatcher(link).forward(request, response);
 			}
+			
 		}
 		
 		//글수정 CMD

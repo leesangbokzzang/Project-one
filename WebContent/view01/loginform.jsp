@@ -53,6 +53,7 @@
 							</div>
 							<div class="table-wrap scro-y-auto hp44">
 								<form action="/user?cmd=LOGIN" method="POST" autocomplete=off id="userForm">
+								<input type="hidden" name="referer" value="${referer }" />
 								<table class="table-type02 freeBoard">
 										<caption>로그인 테이블</caption>
 										<colgroup>

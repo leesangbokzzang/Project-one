@@ -51,6 +51,8 @@ public class UserController01 extends HttpServlet {
 			
 		}
 		if(cmd.equals("LOGINFORM")) {
+			String referer = request.getHeader("Referer");
+			request.setAttribute("referer", referer);
 			String path = "/view01/loginform.jsp";
 			request.getRequestDispatcher(path).forward(request, response);
 		}
@@ -58,6 +60,7 @@ public class UserController01 extends HttpServlet {
 		if(cmd.equals("LOGIN")) {
 			String in_id = request.getParameter("in_id");
 			String in_pw = request.getParameter("in_pw");
+			String referer = request.getParameter("referer");
 			UserDao01 userDao = new UserDao01();
 			UserListVo userVo = userDao.loginCheck(in_id, in_pw);
 			System.out.println(userVo);
@@ -82,15 +85,14 @@ public class UserController01 extends HttpServlet {
 					c.setMaxAge(60*60*30);
 					response.addCookie(c);
 				}
-				/*
-				 * String path = "/board01?cmd=FIRSTLIST";
-				 * request.getRequestDispatcher(path).forward(request,response);
-				 */
-				 response.setContentType("text/html; charset=UTF-8");
-				 PrintWriter out = response.getWriter();
-				 out.println("<script>location.href='../index.jsp'; </script>");
-				 out.flush();
-				 
+				response.setContentType("text/html; charset=UTF-8");
+				String path = referer.substring(referer.lastIndexOf("/"));
+				request.getRequestDispatcher(path).forward(request, response);
+//				String path = "/board01?cmd=FIRSTLIST";
+//				request.getRequestDispatcher(path).forward(request,response);
+//				 PrintWriter out = response.getWriter();
+//				 out.println("<script> history.go(-2); </script>");
+//				 out.flush();
 			} else {
 				//로그인 실패 시 (user_id + incorrect)
 				response.setContentType("text/html; charset=UTF-8");

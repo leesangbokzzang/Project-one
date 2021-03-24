@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+input {width:500px;height:250px;font-size:30px;}
+div{border:1px solid black; width:500px;height:250px; font-size:40px;}
+</style>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+
+function display(data){
+		var html = '';
+		console.log(data)
+		var item = data.message.result.translatedText;
+		$('#div').html(item);
+}
+	
+	
+	
+	$(function(){
+		$('#btn').on('click',function(){
+		$.ajax({
+				url:'http://localhost:9090/papago',
+				data:{ getText : $('#getText').val()
+					
+				},
+				
+				success : function(data){				
+					display(data);  
+
+				},
+				error : function(xhr) {
+					alert(xhr.status + ', ' + xhr.statusText);
+				}
+				
+				
+			}); 
+			
+		});
+		
+	});
+
+</script>
+</head>
+<body>
+ <input type="text" id="getText" />
+  <button id="btn">번역하기</button>
+  <div id="div"></div>
+</body>
+</html>

@@ -50,6 +50,7 @@
 						<li><a href="/board00?cmd=FIRSTLIST" title="게시판">게시판00</a></li>
 						<li><a href="/board01?cmd=FIRSTLIST" title="게시판">게시판01</a></li>
 						<li><a href="/board02?cmd=FIRSTLIST" title="게시판">게시판02</a></li>
+						<li><a href="/act/Getpapago.html" >번역기(한>중)</a></li>
 					</ul>
 					<div class="user-wrap">
 			               <div class="user-info-txt">
@@ -60,7 +61,7 @@
 			               <div class="user-info">
 			                   <div class="user-img">
 			                       <a href="#" title="사용자 정보 더보기" class="user-open">
-			                           <img src="img/girl-img.png" alt="사용자 이미지">
+			                      <!--      <img src="img/girl-img.png" alt="사용자 이미지"> -->
 			                       </a>
 			                   </div>
 			                   <p class="user-name">${user_name}</p>

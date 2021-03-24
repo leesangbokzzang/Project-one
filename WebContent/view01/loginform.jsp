@@ -9,7 +9,7 @@
     	System.out.println("쿠키명 : "+cookie.getName());
     	System.out.println("쿠키값 : "+cookie.getValue());
     }
-    if(cookies.length>0){
+    if(cookies.length>1){
     idsave = cookies[0].getValue();
     } 
 

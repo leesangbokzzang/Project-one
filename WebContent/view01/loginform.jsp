@@ -55,7 +55,7 @@
 								<form action="/user?cmd=LOGIN" method="POST" autocomplete=off id="userForm">
 								<input type="hidden" name="referer" value="${referer }" />
 								<table class="table-type02 freeBoard">
-										<caption>로그인 테이블</caption>
+										<caption>회원 로그인 테이블</caption>
 										<colgroup>
 											<col class="wp25">
 											<col class="wauto">

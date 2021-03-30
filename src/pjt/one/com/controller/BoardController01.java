@@ -12,8 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import pjt.one.com.dao.BoardDao01;
-import pjt.one.com.dao.BoardDao01;
+import pjt.one.com.dao.CommentDao;
 import pjt.one.com.vo.BoardListVo;
+import pjt.one.com.vo.CommentVO;
 
 
 @WebServlet("/board01")
@@ -58,12 +59,13 @@ public class BoardController01 extends HttpServlet {
 		if(cmd.equals("BOARDWRITE")) {	
 			String title= request.getParameter("title");
 			String cont= request.getParameter("cont");
+			String user_id= request.getParameter("user_id");
 			
 			cont=cont.replace("<", "&lt;");
 			cont=cont.replace(">", "&gt;");		
 			
 			BoardDao01 dao=new BoardDao01();
-			dao.insertBoared(title, cont);
+			dao.insertBoared(title, cont, user_id);
 			
 		 String link = "/board01?cmd=FIRSTLIST"; 
 		 request.getRequestDispatcher(link).forward(request, response);
@@ -78,13 +80,18 @@ public class BoardController01 extends HttpServlet {
 			if(user_name==null) {
 				response.sendRedirect("/user?cmd=LOGINFORM");
 			} else {
-			String idx = request.getParameter("IDX");
+			String idx = request.getParameter("idx");
 			BoardDao01 dao= new BoardDao01();
 			BoardListVo vo = dao.getBoardRead(idx);
 			
 			vo.setCONT(vo.getCONT().replace("\n", "<br/>"));
 			
 			request.setAttribute("vo", vo);
+			
+			//해당하는 글에 댓글 불러오기
+			CommentDao cDao = new CommentDao();
+			List<CommentVO> cVo = cDao.getCommentList(idx);
+			request.setAttribute("commentList", cVo);
 			
 			String link = "/view01/read01.jsp";
 			request.getRequestDispatcher(link).forward(request, response);
@@ -136,8 +143,32 @@ public class BoardController01 extends HttpServlet {
 			//삭제 후 글 목록으로 페이지 이동 
 			String link = "/board01?cmd=FIRSTLIST"; 
 			request.getRequestDispatcher(link).forward(request, response);
-
 		}
+		
+		//댓글 CMD
+		if(cmd.equals("COMMENTINSERT")) {
+			request.setCharacterEncoding("utf-8");
+			
+			int idx = Integer.parseInt(request.getParameter("idx"));
+			String user_id = request.getParameter("user_id");
+			String boardComment = request.getParameter("boardComment");
+			
+			System.out.println(idx);
+			System.out.println(user_id);
+			System.out.println(boardComment);
+			
+			//입력한 댓글 넣기
+			CommentDao cDao = new CommentDao();
+			cDao.CommntInsert(idx, user_id, boardComment);
+			
+			//해당하는 글에 댓글 불러오기
+//			List<CommentVO> cVo = cDao.getCommentList(idx);
+//			request.setAttribute("commentList", cVo);
+			
+			String path = "/board01?cmd=BOARDREAD&idx="+idx;
+			request.getRequestDispatcher(path).forward(request, response);
+		}
+		
 	}
 
 }

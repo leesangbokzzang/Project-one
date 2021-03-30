@@ -49,7 +49,7 @@
 											<tr>
 												<td>${ board.IDX }</td>
 												<!-- 게시글읽기 CMD명 BOARDREAD -->
-												<td><a href="/board01?cmd=BOARDREAD&IDX=${ board.IDX }">${ board.TITLE }</a></td>
+												<td><a href="/board01?cmd=BOARDREAD&idx=${ board.IDX }">${ board.TITLE }</a></td>
 												<td>${ board.REGDATE }</td>
 												<td>${ board.USER_ID }</td>
 												<td>${ board.READCOUNT }</td>

@@ -8,26 +8,36 @@
 	</style>
 <%@include file="/layout/header.jsp" %>
 
-
-	<%-- <table>
-		<caption><h2>게시글 읽기 - ${requestScope.vo.getTITLE()}</h2></caption>
-		<tr>
-			<td>${requestScope.vo.getTITLE()}</td> <td>${requestScope.vo.getREGDATE()}</td>
-			<td>${requestScope.vo.getUSER_ID()}</td> <td>${requestScope.vo.getREADCOUNT()}</td>
-		</tr>
-		<tr>
-			<td colspan="4">${requestScope.vo.getCONT()}</td>
-		</tr>
-		<tr>
-			<td colspan="4">
-				<input type="button" name="list" value="목록으로" onclick="javascript:history.back()" />
-															<!-- 글수정 CMD명 EDIT -->
-				<input type="button" name="edit" value="글수정" onclick="location.href='/board01?cmd=EDIT'" />
-															<!-- 글삭제 CMD명 DELETE -->
-				<input type="button" name="delete" value="글삭제" onclick="location.href='/board01?cmd=DELETE'" />
-			</td>
-		</tr>
-	</table> --%>
+<script>
+	function commentOK(){
+		var boardComment = $("#boardComment").val();
+		if(boardComment == ""){
+			alert("댓글의 내용을 작성하십시오.");
+			return false;
+		}else{
+		$.ajax({
+			url : '/board01?cmd=COMMENTINSERT',
+			data : {
+				idx : $("#commnt_idx").val(),
+				user_id : $("#commnt_id").val(),
+				boardComment : $("#boardComment").val()
+			},
+			type : 'POST',
+			success : function(data){
+				//댓글 보여주는 section 에서 새로고침해주고 쓴 댓글을 보여준다.
+				window.location.reload();
+			},
+			error : function(xhr){
+				xhr.status+", "+ xhr.statusText;
+			}
+		});
+		}
+	}
+	function userMention(user){
+		$("#boardComment").val("@"+user+" ");
+		$("#boardComment").focus();
+	}
+</script>
 	
 <div class="sub-main-wrap">
         <div class="sub-container-wrap">
@@ -72,6 +82,67 @@
                                         </tr>
                                     </tbody>
                                 </table>
+                            </div>
+                            <div class="section-tit">
+                                <h3>댓글</h3>
+                            </div>
+                            <div class="table-wrap scro-y-auto">
+                             <form action ="/board?cmd=WRITEPROC" id="boardWriteFm" method= "POST">
+                                <table class="table-type02 freeBoard">
+                                    <caption>글읽기 테이블</caption>
+                                    <colgroup>
+                                        <col class="wp6">
+                                        <col class="wauto">
+                                    </colgroup>
+                                    <tbody>
+                                    	<c:forEach var="coment" items="${commentList}">
+                                    		<tr>
+	                                    		<th><a href="javascript:userMention('${coment.getUser_id()}')"> ${coment.getUser_id()}</a></th>
+											    <td colspan="5">${coment.getCont()} <span style="font-size:12px; color:#bdbdbd; float:right;"> - ${coment.getRegdate()}</span></td>
+	                                    	</tr>
+                                    	</c:forEach>
+                                    </tbody>
+                                </table>
+                                </form>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <div class="sub-section-wrap main-dashboard">
+                    <div>
+                        <section>
+                            <div class="section-tit">
+                                <h3>댓글 쓰기</h3>
+                            </div>
+                            <div class="table-wrap scro-y-auto">
+                             <form action ="/board?cmd=WRITEPROC" id="boardWriteFm" method= "POST">
+                                <table class="table-type02 freeBoard">
+                                    <caption>댓글 테이블</caption>
+                                    <colgroup>
+                                        <col class="wp8">
+                                        <col class="wauto">
+                                    </colgroup>
+                                    <tbody>
+                                    	<tr>
+                                    		<th>${user_name}(${user_id})</th>
+										    <td colspan="5">
+										    	<input type="text" name="boardComment" id="boardComment" value=""/>
+										    </td>
+										    <input type="hidden" name="user_id" id="commnt_id" value="${sessionScope.user_id}"/>
+										    <input type="hidden" name="idx" id="commnt_idx" value="${vo.getIDX()}"/>
+                                    	</tr>
+                                    	<tr>
+                                    		<td colspan="2">
+                                    			<div class="btn-box">
+                                    				<ul>
+                                    					<li><a href="javascript:commentOK()">OK</a></li>
+                                    				</ul>
+                                    			</div>
+                                    		</td>
+                                    	</tr>
+                                    </tbody>
+                                </table>
+                                </form>
                             </div>
                         </section>
                     </div>

@@ -61,6 +61,7 @@
                             </div>
                             <div class="table-wrap scro-y-auto hp94">
                              <form action ="/board01?cmd=BOARDWRITE" method= "POST">
+                             	<input type="hidden" name="user_id" value="${user_id}"/>
                                 <table class="table-type02 freeBoard">
                                     <caption>검토대기현황 테이블</caption>
                                     <colgroup>

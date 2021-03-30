@@ -95,7 +95,7 @@ public class BoardDao01 {
 	}
 	
 	
-	public void insertBoared ( String title, String cont) {
+	public void insertBoared ( String title, String cont, String user_id) {
 		Connection 				conn  = null;
 		PreparedStatement 		pstmt = null;
 		ResultSet 				rs    = null;
@@ -106,16 +106,17 @@ public class BoardDao01 {
 		try {
 			db = new DBConn();
 			conn = db.getConnection();
-			String sql =  " insert into board2(idx,title, cont)";
+			String sql =  " insert into board2(idx,title, cont, user_id)";
 			sql       +=  " values(";
 			sql       +=  " ( SELECT NVL(MAX(IDX),0)+1  FROM BOARD2)";
-			sql       +=  " ,?, ?) ";
+			sql       +=  " ,?, ?, ?) ";
 			
 			
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString (1, title);
 			pstmt.setString (2, cont);
+			pstmt.setString (3, user_id);
 			
 			 pstmt.executeUpdate();
 			//IDX, TITLE, CONT, READCOUNT, REGDATE, USER_ID
